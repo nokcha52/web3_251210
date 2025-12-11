@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // window.addEventListener("mousewheel",(e) =>{
+        //     console.log(e);
+        // })
+
+        let posY = 100;
+        window.addEventListener("scroll",(e) => {
+            if(posY < window.scrollY){
+                console.log("너 지금 스크롤 내렸네?")
+            }else {
+                console.log("너 지금 스크롤을 올렸네?")
+            }
+        })
+    </script>
+    
+</body>
+</html>

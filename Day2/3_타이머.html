@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // isNaN(입력받은값) : 사용자가 입력한 값이 숫자가 아니라면 true를 반환함
+        // NaN : not a number
+
+        // let userNum = Number(prompt("숫자를 입력해주세요."));
+        // let curruntNum = userNum;
+        // let userCountDown =setInterval(() => {
+        //     document.write("남은 시간:"+ curruntNum +"초" + "<br>");
+        //     curruntNum--;
+        //     if(curruntNum === 0) {
+        //         clearInterval(userCountDown);
+        //         document.write("타이머 끝")
+        //     }else if(isNaN(curruntNum) || curruntNum === 0) {
+        //         document.write("잘못 입력하였습니다. 다시 숫자를 입력해주세요.");
+        //     }
+        // },1000)
+
+        let userTime = Number(prompt("타이머 시간을 입력하삼 (초)"));
+        if(isNaN(userTime) || userTime <= 0) {
+            document.write("올바른 시간을 입력하삼");
+        }else{
+            document.write("타이머 시작 : " + userTime + "초 남음");
+
+            let timer = setInterval(()=> {
+                userTime--;
+                if(userTime > 0){
+                    document.write(`남은 시간 : ${userTime} 초 <br>`);
+                } else {
+                    clearInterval(timer);
+                    document.write("타이머 종료!");
+                }
+            },1000)
+        }
+    </script>
+</body>
+</html>
