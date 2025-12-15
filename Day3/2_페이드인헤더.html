@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fadein_header</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 5000px;
+        }
+        header {
+            height: 100px;
+            background-color: rgb(121, 88, 151);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .lorem {
+            margin-top: 100px;
+            font-size: 14px;
+        }
+
+        header.hide {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+    <div class="lorem">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem esse ut unde aut impedit, fugiat doloribus ullam quo, consequatur accusamus corporis animi autem? Eius repellat assumenda corporis ullam velit commodi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem esse ut unde aut impedit, fugiat doloribus ullam quo, consequatur accusamus corporis animi autem? Eius repellat assumenda corporis ullam velit commodi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem esse ut unde aut impedit, fugiat doloribus ullam quo, consequatur accusamus corporis animi autem? Eius repellat assumenda corporis ullam velit commodi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem esse ut unde aut impedit, fugiat doloribus ullam quo, consequatur accusamus corporis animi autem? Eius repellat assumenda corporis ullam velit commodi.
+    </div>
+    <script>
+        const header = document.querySelector("#header");
+        console.log(header);
+
+        let posY = 0;
+        window.addEventListener("scroll",(e)=> {
+            if(posY < window.scrollY) {
+                header.classList.add("hide");
+            }else {
+                header.classList.remove("hide");
+            }
+
+            posY = window.scrollY;
+        });
+    </script>
+</body>
+</html>
