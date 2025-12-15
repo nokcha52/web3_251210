@@ -25,14 +25,19 @@
             list.push(prompt("성명 입력"));
         })
         console.log(list);
+        
 
         // 이름있는 함수 사용
         // usercheck를 눌렀을 때 현재 대기자는 홍길동,김철수,박영희 이며, 총 3명 입니다
         // 대기자가 없으면 없습니다.
-        let userCheck_btn = function(){
-            alert(``)
-        }
         
+        userCheck.addEventListener("click",function(){
+            if(list.length > 0) {
+                alert(`현재 대기자는 ${list}이며 총 ${list.length}명 입니다.`);
+            } else {
+                alert("대기자는 없습니다");
+            }
+        })
 
     </script>
 </body>
