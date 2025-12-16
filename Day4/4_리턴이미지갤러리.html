@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div {
+            align-items: center;
+            width: 500px;
+        } */
+        figure,
+        img {
+            margin: 0 0 30px 0;
+            width: 500px;
+            height: 700px;
+        }
+        button {
+            width: 240px;
+            height: 80px;
+            background-color: rgb(63, 132, 192);
+            border: none;
+            color: #Fff;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <figure>
+            <img id="photo" src="./동물_1.jpeg" alt="">
+        </figure>
+    
+        <button onclick="gallery(0)">prev</button>
+        <button onclick="gallery(1)">next</button>
+    </div>
+
+    <script>
+        // html로 구조를 잡은 후 figure안에 첫번째 img를 넣어줌
+        // button 두개 만들기
+        // 이전 버튼을 누르면 onclick="함수이름(0)"을 넣어준다.
+        // 다음 버튼을 누르면 onclick="함수이름(1)"을 넣어준다.
+        // const button = document.querySelector("#button");
+
+        // let click = 0;
+        // window.addEventListener("click",(e)=> {
+        //     if(click > 0) {
+
+        //     }
+        // })
+
+        let imgNum = 1;
+        function gallery(num){
+            if(num) {
+                //next를 눌렀을 때
+                if(imgNum == 3) {
+                    return;
+                }else {
+                imgNum++
+                }
+            }else {
+                if(imgNum == 1){
+                    return;
+                }else{
+                    imgNum--
+                }
+            }
+                let pohto = document.getElementById("photo");
+                photo.setAttribute
+        }
+        // 스크립트 부분은 함수 두개로 만들기
+        // 현재 보여지는 img의 번호를 저장하는 변수를 만들것(초기값 1)
+        // 함수를 만드는데 매개변수를 받을 것이다.
+        // 버튼에서 함수를 호출하여 받은 매개변수를 가지고 if문을 제어한다.
+
+
+        // 만약에 매개변수에 들어온 값이 1~3 사이에서만 보여야함(3 넘어가면 다음으로 넘어갈 수 없게, 1과 같다면 이전으로 넘어갈 수 없게)
+        // 이미지에 있는 id를 불러와서 이미지변수명.setAttribute("src","./동물" + img의 번호를 저장하는 변수 + ".jpg")
+        // ./동물2.jpg
+
+
+
+    </script>
+</body>
+</html>

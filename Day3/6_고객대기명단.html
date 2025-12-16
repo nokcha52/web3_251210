@@ -22,7 +22,13 @@
         let list = new Array();
 
         userName.addEventListener("click",function(){
-            list.push(prompt("성명 입력"));
+            // list.push(prompt("성명 입력"));
+            const name = prompt("성명 입력");
+            if(name !== "") {
+                list.push(name);
+            }else {
+                alret("이름을 입력해주세요");
+            }
         })
         console.log(list);
         
@@ -30,14 +36,27 @@
         // 이름있는 함수 사용
         // usercheck를 눌렀을 때 현재 대기자는 홍길동,김철수,박영희 이며, 총 3명 입니다
         // 대기자가 없으면 없습니다.
-        
-        userCheck.addEventListener("click",function(){
-            if(list.length > 0) {
-                alert(`현재 대기자는 ${list}이며 총 ${list.length}명 입니다.`);
-            } else {
-                alert("대기자는 없습니다");
+
+        function listName(){
+            if(list.length){
+                alret(`현재 대기자는 ${list}이며 총 ${list.length}명 입니다.`);
+            }else{
+                alret("대기자가 없습니다.");
             }
-        })
+        }
+
+        userCheck.addEventListener("click",listName);
+
+        function come(){
+            if(list.length){
+                alret(`${list.shift()}님 입장합니다. 대기 인원은 ${list.length}입니다`);
+            }else{
+                alret("입장할 손님이 없습니다.");
+            }
+        }
+
+        comeIn.addEventListener("click",come);
+     
 
     </script>
 </body>
