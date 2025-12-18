@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>        
+        .line {
+            width: 30px;
+            height: 3px;
+            background-color: rgb(214, 134, 14);
+            position: absolute;
+            right: 30px;
+            top: 30px;
+        }
+        .line::before {
+            content: "";
+            width: 30px;
+            height: 3px;
+            background-color: rgb(214, 134, 14);
+            position: absolute;
+            top: 10px;
+        }
+        .line::after {
+            content: "";
+            width: 30px;
+            height: 3px;
+            background-color: rgb(214, 134, 14);
+            position: absolute;
+            top: 20px;
+        }
+        .rotate_right {
+            transform: rotate(45deg);
+        }
+        .rotate_left {
+            transform: rotate(45deg);
+        }        
+        .menu {
+            width: 400px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: bisque;
+        }
+        .menu_list {
+            list-style: none;
+        }
+        .menu_list > li {
+            font-size: 20px;
+            color: rgb(156, 92, 14);
+            padding: 20px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="menu" id="menu">
+        <ul class="menu_list" id="menu_list">
+            <li>About</li>
+            <li>History</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+    <div class="line" id="line">
+    </div>
+    
+    <script>
+         const line = document.getElementById("line");
+         const menu = document.getElementById("menu");
+
+         line.addEventListener("click",function(){
+            line.classList.add("rotate_right")
+        })
+    </script>
+</body>
+</html>
