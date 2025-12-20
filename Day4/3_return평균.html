@@ -9,16 +9,18 @@
 
 <body>
     <script>
+        let arrsubject = ["영어", "수학", "국어"];
+        
         function subjectAvg(subData) {
             let sum = 0;
             for (let i = 0; i < subData.length; i++) {
                 sum += Number(prompt(`${subData[i]}의 점수는?`));
             }
-            console.log(sum);
+            // console.log(sum);
             let avg = Math.round(sum / subData.length);
             return avg;
         }
-        let arrsubject = ["영어", "수학", "국어"];
+        
         let result = subjectAvg(arrsubject);
         document.write("평균 : " + result);
     </script>

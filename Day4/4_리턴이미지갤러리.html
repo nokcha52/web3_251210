@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>리턴이미지갤러리</title>
     <style>
-        /* div {
-            align-items: center;
-            width: 500px;
-        } */
+
         figure,
         img {
             margin: 0 0 30px 0;
             width: 500px;
-            height: 700px;
+            height: 600px;
         }
         button {
-            width: 240px;
+            width: 245px;
             height: 80px;
             background-color: rgb(63, 132, 192);
             border: none;
@@ -56,18 +53,20 @@
                 if(imgNum == 3) {
                     return;
                 }else {
-                imgNum++
+                    imgNum++;
                 }
             }else {
                 if(imgNum == 1){
                     return;
                 }else{
-                    imgNum--
+                    imgNum--;
                 }
             }
-                let pohto = document.getElementById("photo");
-                photo.setAttribute
+                let photo = document.getElementById("photo");
+                photo.setAttribute("src","./동물_" + imgNum + ".jpeg")
         }
+
+
         // 스크립트 부분은 함수 두개로 만들기
         // 현재 보여지는 img의 번호를 저장하는 변수를 만들것(초기값 1)
         // 함수를 만드는데 매개변수를 받을 것이다.
