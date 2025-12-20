@@ -27,21 +27,27 @@
             height: 3px;
             background-color: rgb(214, 134, 14);
             position: absolute;
-            top: 20px;
+            top: -10px;
         }
         .rotate_right {
+            position: absolute;
+            top: 0;
             transform: rotate(45deg);
         }
         .rotate_left {
+            position: absolute;
+            top: 0;
             transform: rotate(45deg);
         }        
         .menu {
+            display: none;
             width: 400px;
             height: 100%;
             position: absolute;
             right: 0;
             top: 0;
             background-color: bisque;
+            transition: 0.8s;
         }
         .menu_list {
             list-style: none;
@@ -67,11 +73,25 @@
     
     <script>
          const line = document.getElementById("line");
+         const lineAfter = document.getElementsByClassName("line::after");
+         const lineBefore = document.getElementsByClassName("line::before");
          const menu = document.getElementById("menu");
 
+         function openMenu() {
+            menu.style.display = "block"
+         }
+         function closeMenu() {
+            menu.style.display = "none"
+         }
          line.addEventListener("click",function(){
-            line.classList.add("rotate_right")
+            line.classList.add("::after");
+            lineAfter.classList.add("rotate_right");
+            line.style.display= "none";
+            openMenu()
         })
+        //  line.addEventListener("click",function(){
+        //     closeMenu()
+        // })
     </script>
 </body>
 </html>
