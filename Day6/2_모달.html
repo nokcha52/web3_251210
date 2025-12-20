@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            width: 200px;
+            height: 60px;
+            border: none;
+            border-radius: 16px;
+            font-size: 24px;
+            background-color: rgb(22, 175, 175);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top:0;
+            left: 0;
+            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+        }
+        .modal {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            width: 400px;
+            height: 250px;
+            border: 1px solid#137e55;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: end;
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+        }
+        .modal > h2 {
+            width: 400px;
+        }
+        .close_modal {
+            width: 160px;
+            height: 40px;
+            background-color: aquamarine;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <button class="open_modal" id="open_modal">모달창 오픈</button>
+    <div class="overlay" id="overlay">
+        <!-- 뒤에 깔리는 배경색이 될것 -->
+    </div>
+
+    <div class="modal" id="modal">
+        <h2>모달창이 오픈되었음!</h2>
+        <button class="close_modal" id="close_modal">모달창 닫기</button>
+    </div>
+
+    <script>
+        const openModal = document.getElementById("open_modal");
+        const overlay = document.getElementById("overlay");
+        const modal = document.getElementById("modal");
+        const closeModal = document.getElementById("close_modal");
+
+        openModal.addEventListener("click",function(){
+            modal.style.display = "block";
+            overlay.style.display = "block";
+        })
+        
+        function closeModalFuction() {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        }
+        closeModal.addEventListener("click",()=> {
+            closeModalFuction();
+        })
+        overlay.addEventListener("click",()=> {
+            closeModalFuction();
+        })
+
+        document.addEventListener("keydown",()=>{
+            if(event.key === "Escape"){
+                closeModalFuction();
+            }
+        })
+    </script>
+
+</body>
+</html>
