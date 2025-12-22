@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바닐라슬라이드</title>
+    <style>
+        .slide_container {
+            width: 1000px;
+            height: 500px;
+            text-align: center;
+            line-height: 500px;
+            color: #831a1a;
+            font-size: 100px;
+            border: 3px solid#831a1a;
+            margin: 0 auto;
+        }
+        .btn_box {
+            width: 1000px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn_box > button {
+            width: 150px;
+            height: 50px;
+            background-color: #831a1a;
+            color: #fff;
+            font-size: 20px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide_container"></div>
+    <div class="btn_box">
+        <button>prev</button>
+        <button>next</button>
+    </div>
+    
+    <script>
+        const viewBox = document.querySelector(".slide_container");
+        const btns = document.querySelector(".btn_box");
+        console.log(btns.children[0]);
+
+        let index = 1;
+        viewBox.innerHTML = index;
+
+        //4 다음 1 1이전 4인거 잊지말기
+
+        // function add(){
+        //     index++;
+        //     viewBox.innerHTML = index;
+        // } 
+        // function minus(){
+        //     index--;
+        //     viewBox.innerHTML = index;
+        // }
+        // btns.children[1].addEventListener("click",()=>{
+        //     if(index < 4){
+        //         add()
+        //     }else {
+        //         index = 1;
+        //         viewBox.innerHTML = index;
+        //     }
+        // })
+        // btns.children[0].addEventListener("click",()=>{
+        //     if(index > 1){
+        //         minus()
+        //     }else {
+        //         index = 4;
+        //         viewBox.innerHTML = index;
+        //     }
+        // })
+
+        function prev(){
+            if(index===1){
+                index = 4;
+            }else {
+                index--;
+            }
+            viewBox.innerHTML = index;
+        }
+        function next(){
+            if(index===4){
+                index = 1;
+            }else {
+                index++;
+            }
+            viewBox.innerHTML = index;
+
+            btns.children[0].addEventListener("click",prev);
+            btns.children[1].addEventListener("click",next);
+        }
+    </script>
+</body>
+</html>
