@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .slide_container {
+            width: 1000px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: flex;
+            height: 500px;
+        }
+        .slide > li {
+            width: 1000px;
+            height: 500px;
+            list-style: none;
+        }
+        img{
+            width: 1000px;
+            height: 500px;
+        }
+        .slide_btns {
+            width: 1000px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            width: 150px;
+            height: 50px;
+            background: crimson;
+            font-size: 32px;
+            color: #fff;
+            border: none;
+        }
+        .dot_box {
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgb(122, 122, 122);
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            background-color: rgb(184, 42, 42);
+            width: 25px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide_container">
+        <ul class="slide">
+            <li class="slider_01">
+                <img src="./img_1.jpeg" alt="">
+            </li>
+            <li class="slider_02">
+                <img src="./img_2.jpg" alt="">
+            </li>
+            <li class="slider_03">
+                <img src="./img_3.jpeg" alt="">
+            </li>
+            <li class="slider_04">
+                <img src="./img_4.jpeg" alt="">
+            </li>
+            <li class="slider_05">
+                <img src="./img_5.jpeg" alt="">
+            </li>
+        </ul>        
+    </div>
+
+    <div class="slide_btns">
+        <button>prev</button>
+        <div class="dot_box">
+        </div>
+        <button>next</button>
+    </div>
+    <script>
+        const buttons = document.querySelector(".slide_btns"); //닷을 포함한 전체 버튼 상자
+        const vieBox = document.querySelector(".slide_container"); //보여질 부분
+        const slide = document.querySelector(".slide"); //ul
+        const dotBox = document.querySelector("dot_box"); //dot이 들어갈 빈 div
+        const slideWidth = 1000; //슬라이드 한장의 너비
+        let moveCheck = true; //이동중임을 체크하는 변수
+
+        // element.parentNode : 부모요소
+        // element.childern : 자식요소
+        // element.firstElementChild : 첫번째 자식
+        // element.lastElementChild : 마지막 자식
+
+         /*
+        1. createElement : 새로운 HTMl 요소를 생성
+        2. remove / removeChild : HTMl에서 요소를 삭제할 때 사용
+            element.remove() : 요소 자체를 삭제
+            parent.removeChild(child) : 부모 요소에서 자식 요소를 삭제
+        3. appendChild : 부모요소에 자식요소를 맨 마지막에 추가
+            특징 : 추가할 요소가 이미 다른곳에 있다면 그 요소를 새 위치로 이동시킴
+        4. prepend : 부모요소에 자식요소를 맨 앞에 추가
+        5. insertBefore : 특정 요소 앞에 새 요소를 추가
+            parent.insertBefore(newNode, referenceNode)
+        6. replaceChild : 기존 자식 요소를 새 요소로 교체
+            parent.replaceChild(newNode, oldNode)
+        
+        */
+        console.log(slide.firstElementChild);
+        const first = slide.firstElementChild.cloneNode(true);
+        console.log(first);
+        const last = slide.lastElementChild.cloneNode(true);
+        console.log(last);
+
+        slide.appendChild(first);
+        slide.insertBefore(last,slide.firstElementChild);
+        let sliderLength =slide.childElementCount;
+        console.log(sliderLength);
+
+        slide.style.width = sliderLength*slideWidth +"px"
+
+        //===================================================================================================
+        // 처음 브라우저 열었을 때 보이는 인덱스 설정
+
+        //
+
+
+    </script>
+</body>
+</html>
