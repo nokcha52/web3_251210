@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
 
         .slide_container {
             width: 1000px;
-            height: 500px;
+            height: 600px;
             margin: 0 auto;
             overflow: hidden;
         }
 
         .slide {
             display: flex;
-            height: 500px;
+            height: 600px;
         }
-        .slide > li {
+
+        .slide>li {
             width: 1000px;
-            height: 500px;
+            height: 600px;
             list-style: none;
         }
-        img{
+
+        img {
             width: 1000px;
-            height: 500px;
+            height: 600px;
         }
+
         .slide_btns {
             width: 1000px;
             margin: 50px auto;
@@ -37,6 +41,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         button {
             width: 150px;
             height: 50px;
@@ -45,15 +50,18 @@
             color: #fff;
             border: none;
         }
+
         .dot_box {
             display: flex;
             gap: 8px;
         }
+
         .dot {
             width: 10px;
             height: 10px;
-            background-color: rgb(122, 122, 122);
+            background-color: rgb(128, 99, 99);
             border-radius: 50%;
+            transition: 0.3s;
         }
 
         .dot.active {
@@ -63,6 +71,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="slide_container">
@@ -82,7 +91,7 @@
             <li class="slider_05">
                 <img src="./img_5.jpeg" alt="">
             </li>
-        </ul>        
+        </ul>
     </div>
 
     <div class="slide_btns">
@@ -104,20 +113,20 @@
         // element.firstElementChild : 첫번째 자식
         // element.lastElementChild : 마지막 자식
 
-         /*
-        1. createElement : 새로운 HTMl 요소를 생성
-        2. remove / removeChild : HTMl에서 요소를 삭제할 때 사용
-            element.remove() : 요소 자체를 삭제
-            parent.removeChild(child) : 부모 요소에서 자식 요소를 삭제
-        3. appendChild : 부모요소에 자식요소를 맨 마지막에 추가
-            특징 : 추가할 요소가 이미 다른곳에 있다면 그 요소를 새 위치로 이동시킴
-        4. prepend : 부모요소에 자식요소를 맨 앞에 추가
-        5. insertBefore : 특정 요소 앞에 새 요소를 추가
-            parent.insertBefore(newNode, referenceNode)
-        6. replaceChild : 기존 자식 요소를 새 요소로 교체
-            parent.replaceChild(newNode, oldNode)
-        
-        */
+        /*
+       1. createElement : 새로운 HTMl 요소를 생성
+       2. remove / removeChild : HTMl에서 요소를 삭제할 때 사용
+           element.remove() : 요소 자체를 삭제
+           parent.removeChild(child) : 부모 요소에서 자식 요소를 삭제
+       3. appendChild : 부모요소에 자식요소를 맨 마지막에 추가
+           특징 : 추가할 요소가 이미 다른곳에 있다면 그 요소를 새 위치로 이동시킴
+       4. prepend : 부모요소에 자식요소를 맨 앞에 추가
+       5. insertBefore : 특정 요소 앞에 새 요소를 추가
+           parent.insertBefore(newNode, referenceNode)
+       6. replaceChild : 기존 자식 요소를 새 요소로 교체
+           parent.replaceChild(newNode, oldNode)
+       
+       */
         console.log(slide.firstElementChild);
         const first = slide.firstElementChild.cloneNode(true);
         console.log(first);
@@ -125,18 +134,96 @@
         console.log(last);
 
         slide.appendChild(first);
-        slide.insertBefore(last,slide.firstElementChild);
-        let sliderLength =slide.childElementCount;
+        slide.insertBefore(last, slide.firstElementChild);
+        let sliderLength = slide.childElementCount;
         console.log(sliderLength);
 
-        slide.style.width = sliderLength*slideWidth +"px"
+        slide.style.width = sliderLength * slideWidth + "px";
+
+        //===================================================================================================
+        buttons.children[0].addEventListener("click",prev);
+        buttons.children[2].addEventListener("click",next);
+
+        //===================================================================================================
+        //이동하는 함수
+        function moveslide(time) {
+            slide.style.transition = time + "ms";
+            slide.style.transform = `translateX(-${index * slideWidth}px)`;
+            updateDot();
+        }
 
         //===================================================================================================
         // 처음 브라우저 열었을 때 보이는 인덱스 설정
+        let index = 1; //현재 보고 있는 화면 번호 0 1 2 3 4 5 6
+        slide.style.transform = `translateX(-${index * slideWidth}px)`;
 
-        //
+        //===================================================================================================  
+        // 이전, 다음 함수
+        function prev() {
+            if (moveCheck) { //만약 moveCheck가 true라면 실행한다
+                moveCheck = false; // 슬라이드가 이동 중에 다시 if문이 실행되면 안됨(if문이 작동되지 않도록 잠시 막아두는 것)
+                index--; // 이전을 눌렀으니 인덱스를 1 감소시켜줌 
+                setTimeout(() => {
+                    if (index === 0) { // 감소한 인덱스가 0과 같다면
+                        index = slide.childElementCount - 2; //전체 인덱스에 -2한 값을 인덱스에 넣어줌
+                        moveslide(0); // 맨 왼쪽에 붙어있는 인덱스(5)에서 실제 5번 인덱스로 0초만에 이동함
+                    }
+                    moveCheck = true; //다시 prev를 누룰 수 있도록 true로 바꿔줌
+                }, 1000); //1초 안에 moveCheck가 true로 바뀜
+                moveslide(1000); //왼쪽으로 이동시킴
+            }
 
+        }
+        function next(){
+            if(moveCheck) {//만약 moveCheck가 true라면 실행한다
+                moveCheck= false;// 슬라이드가 이동 중에 다시 if문이 실행되면 안됨(if문이 작동되지 않도록 잠시 막아두는 것)
+                index++;// 이전을 눌렀으니 인덱스를 1 증가시켜줌 
+                setTimeout(()=>{
+                    if(index=== slide.childElementCount -1){// 감소한 인덱스가 5와 같다면
+                        index = 1;//전체 인덱스에 1 인덱스에 넣어줌
+                        moveslide(0);// 맨 오른쪽에 붙어있는 인덱스(1)에서 실제 1번 인덱스로 0초만에 이동함
+                    }
+                    moveCheck = true;
+                },1000);
+                moveslide(1000);
+            }
+        }
+        
+        setInterval(() => {
+            next();
+        }, 3000);
+        //===================================================================================================
+        //dot 만들기
 
+        for(let i=0; i < sliderLength - 2; i++){
+            const makeDot = document.createElement('div');
+            makeDot.classList.add("dot");
+            dotBox.appendChild(makeDot);
+
+            makeDot.addEventListener("click",()=>{
+                index = i + 1;
+                moveslide(1000);
+            })
+        }
+
+        dotBox.children[0].classList.add("active");
+
+        function updateDot(){
+            for(let i =0; i < sliderLength - 2; i++){
+                dotBox.children[i].classList.remove("active");
+                if(index===0){
+                    dotBox.children[sliderLength-3].classList.add("active");
+                }else if(sliderLength -1){
+                    dotBox.children[0].classList.add("active");
+
+                }else{
+                    dotBox.children[index-1].classList.add("active");
+                }
+            }
+        }
+
+        
     </script>
 </body>
+
 </html>
