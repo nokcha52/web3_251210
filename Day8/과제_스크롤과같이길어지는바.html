@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            height: 5000px;
-        }
-        .container {
-            height: 60px;
-            position: fixed;
-            top: 0;
-            left: 0;  
-             background-color: brown;                                  
-        }
-        .container.color {
-            height: 60px;
-            background-color: brown;
-        } 
-    </style>
+<meta charset="UTF-8">
+<title>Scroll Gauge</title>
+<style>
+    body {
+        height: 5000px;
+        margin: 0;
+    }
+    .container {
+        height: 6px;
+        width: 0%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: brown;
+        transition: width 0.1s;
+    }
+</style>
 </head>
 <body>
     <div class="container"></div>
     <script>
-        const container = document.querySelector(".container");
-        let scrollY = window.scrollY;
-        console.log(scrollY);
-        let posY = 0;        
-        window.addEventListener("scroll",(e)=>{
-            if(posY > window.scrollY) {
-                container.style.width= scrollY + "px";
-            }else {
-                container.classList.add("color");
-                container.style.width= ((posY/window.innerWidth)*100) + "px";
-            }
-        })
+    const container = document.querySelector(".container");
 
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const percent = (scrollTop / docHeight) * 100;
 
+        container.style.width = percent + "%";
+});
+</script>
 
-    </script>
 </body>
 </html>
