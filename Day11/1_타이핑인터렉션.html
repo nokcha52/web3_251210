@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이핑인터렉션</title>
+    <style>
+        body {
+            background-color: rgb(98, 192, 192);
+        }
+        #typing {
+            font-size: 50px;
+            font-weight: bold;
+            color: #fff;
+            margin: 0 300px;
+            transform: translateY(350px);
+            border-right: 2px solid #fff;
+            width: max-content;
+            animation: borderAnimation 1s infinite;
+        }
+
+        @keyframes borderAnimation {
+            50% {
+                /* border: none; */
+                /* 배경색주기 */
+                border-right: transparent;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="typing">
+    </div>
+    <script>
+        const texts = [
+            "WELCOME TO MY PORTFOLIO",
+            "저의 포트폴리오에 오신 것을 환영합니다람쥐",
+            "저는 컴퓨터를 바꾸고 싶어요",
+            "바꾸면 해보고 싶은 게임이 잔뜩 있거든요"
+        ]
+        let textIndex = 0; //현재 어떤 문장 타이핑 중인지 저장할 변수
+        let charIndex = 0; //현재 문장 안에서 몇번째 글짜까지 썼는지 확인할 변수
+
+        const typingElement = document.getElementById("typing");
+        console.log(texts[textIndex].length);
+        console.log(texts[textIndex][charIndex]);
+        const typing = ()=>{
+            if(charIndex < texts[textIndex].length){
+                typingElement.textContent += texts[textIndex][charIndex];
+                charIndex++;
+                setTimeout(typing,150);
+                
+            }else {
+                setTimeout(() => {
+                    typingElement.textContent = "";
+                    charIndex = 0;
+                    textIndex = (textIndex+1) % texts.length;
+                    //texts.length: 4  0~3
+                    // 1 / 4 = 1
+                    // 2 / 4 = 2
+                    // 3 / 4 = 3
+                    // 4 / 4 = 0
+                    typing()
+                }, 1000);
+                
+            }
+        };
+        typing()
+
+    </script>
+</body>
+</html>
