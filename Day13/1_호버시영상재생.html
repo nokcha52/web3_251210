@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            padding: 100px 30px;
+            display: flex;
+            background-color: rgb(37, 37, 37);
+            color: #fff;
+            height: 100vh;
+            width: 100%;
+        }
+        header,
+        .inner {
+            width: 300px;
+            height: 600px;
+        }
+        .inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            /* align-items: flex-start; */
+        }
+        .inner:hover {
+            background-color: #505050;
+            transition: 0.3s;
+        }
+        .inner:hover .txt {
+            gap: 0px;
+        }
+        .inner:hover .txt>h2 {
+            font-size: 60px;
+        }
+        .inner:hover .txt>h2::after {
+            top: 100px;
+            width: 100px;
+            background-color: #f8c539;
+        }
+        
+        .content_section {
+            display: flex;
+        }
+        .inner > figure > video {
+            width: 300px;
+        }
+        .txt {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .txt > h2 {
+            font-size: 30px;
+            font-weight: 600;
+            position: relative;
+        }
+        .txt > h2::after {
+            content: "";
+            position: absolute;
+            top: 60px;
+            left: 0;
+            height: 1px;
+            width: 50px;
+            color: #fff;
+            background-color: #fff;
+        }
+        figure {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>
+                JISOO
+            </h1>
+
+            <p>
+                2026 CODING<br>
+                JISOO KIM
+            </p>
+        </header>
+
+        <section class="content_section">
+            <article class="content">
+                <div class="inner">
+                    <div class="txt">
+                        <h2>01</h2>
+                        <p>Lorem ipsum dolor sit, amet <br>consectetur adipisicing elit.</p>
+                    </div>
+                    <figure>
+                        <video src="./vid1.mp4" muted loop></video>
+                    </figure>
+                </div>
+            </article>
+            <article class="content">
+                <div class="inner">
+                    <div class="txt">
+                        <h2>02</h2>
+                        <p>Lorem ipsum dolor sit, amet <br>consectetur adipisicing elit.</p>
+                    </div>
+                    <figure>
+                        <video src="./vid2.mp4" muted loop></video>
+                    </figure>
+                </div>
+            </article>
+            <article class="content">
+                <div class="inner">
+                    <div class="txt">
+                        <h2>03</h2>
+                        <p>Lorem ipsum dolor sit, amet <br>consectetur adipisicing elit.</p>
+                    </div>
+                    <figure>
+                        <video src="./vid3.mp4" muted loop></video>
+                    </figure>
+                </div>
+            </article>
+            <article class="content">
+                <div class="inner">
+                    <div class="txt">
+                        <h2>04</h2>
+                        <p>Lorem ipsum dolor sit, amet <br>consectetur adipisicing elit.</p>
+                    </div>
+                    <figure>
+                        <video src="./vid4.mp4" muted loop></video>
+                    </figure>
+                </div>
+            </article>
+        </section>
+
+        <!-- <section class="hidden_content">
+            <div class="txt">
+                <h2 class="change_title">01</h2>
+                <p class="change_text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                <span class="close_txt">CLOSE</span>
+            </div>
+            <figure>
+                <video class="hidden_video" src="./vid1.mp4" muted loop></video>
+            </figure>
+        </section> -->
+    </main>
+
+    <script>
+        
+    </script>
+</body>
+</html>
