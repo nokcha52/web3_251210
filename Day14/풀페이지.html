@@ -39,6 +39,9 @@
                 overflow: auto;
             }
         }
+        .menu.hidden {
+            display: none;
+        }
        
     </style>
 </head>
@@ -173,12 +176,15 @@
         }
 
         //=============================================================================================================
-        // 초기화 함수
+        // 반응형 함수
+        const menuUl = document.getElementsByClassName("menu")
         function initFullpageScroll(){
             if(window.innerWidth > breakPoint){
-                window.addEventListner("wheel",handleScroll);
+                window.addEventListener("wheel",handleScroll);
+                menuUl.classList.remove("hidden");
             } else {
                 window.removeEventListener("wheel",handleScroll);
+                menuUl.classList.add("hidden");
             }
             // 브라우저의 너비가 1024보다 크다면 handleScroll실행
             // 브라우저의 너비가 1024보다 작다면 handleScroll제거

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 80px;
+            background-color: rgb(139, 139, 47);
+            perspective: 500px;
+        }
+
+        .card {
+            position: relative;
+            width: 450px;
+            height: 600px;
+            border-radius: 20px;
+            background-color: aqua;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5) ;
+            transform-style: preserve-3d;
+            color: #e8e8e8;
+            transition: transform 0.3s linear;
+        }
+        .card_content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translateZ(70px);
+        }
+        .first {
+            background: url(./우주배경.avif);
+            background-size: cover;
+        }
+        .second {
+            background: url(./풍경.jpeg);
+            background-size: cover;
+        }
+        .animal_img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            transform: translateZ(60px);
+        }
+    </style>
+</head>
+<body>
+    <div class="card first">
+        <div class="card_content">
+            <h2>다람쥐 장풍 처음 봐?</h2>
+            <p>쫘샤 뭘 봐!</p>
+        </div>
+        <img class="animal_img" src="./다람쥐의장풍.png" alt="">
+    </div>
+    <div class="card second">
+        <div class="card_content">
+            <h2>해탈의 경지에 이른 강아지</h2>
+            <p>산은 산이오. 나는 강아지로다.</p>
+        </div>
+        <img class="animal_img" src="./강아지이미지.png" alt="">
+    </div>
+    <script>
+        const cards = document.querySelectorAll(".card");
+        console.log(cards);
+
+        cards.forEach(card=>{
+            card.addEventListener("mousemove",(e)=>{
+               const rect = card.getBoundingClientRect();
+               // top, x, y, left, width, height 
+               //e.clientX : 브라우저 왼쪽을 기준으로 마우스의 x좌표 가져옴
+               //e.clientY : 브라우저 왼쪽을 기준으로 마우스의 y좌표 가져옴
+               // rect.left : 카드의 왼쪽 시작점
+               const x = e.clientX - rect.left;
+               const y = e.clientY - rect.top;
+               // 카드의 왼쪽 시작점 : 200 
+               // 마우스의 x 좌표: 350
+               // 350 - 200 = 150 
+            //    console.log(rect.left);
+            const centerX = rect.width/2;
+            const centerY = rect.height/2;
+
+            const rotateX = -(y -centerY)/15;
+            const rotateY = (x -centerX)/15;
+            // x : 카드 왼쪽 기준 마우스 위치
+            // centerX : 카드 x 중앙
+            // 200 - 150 = 50 => rotateY(3.3deg)
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+            card.addEventListener("mouseleave",()=>{
+                card.style.transform = `rotateX(0deg) rotateY(0deg)`
+            })
+
+            })
+        })
+    </script>
+</body>
+</html>
